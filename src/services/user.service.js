@@ -5,7 +5,6 @@ const createNewUser = async (user) => {
     const newUser = await User.create(user);
     return { type: '', message: newUser };
   } catch (error) {
-    console.log(error);
     return { type: 'USER_EXISTS', message: 'User already registered' };
   }
 };
