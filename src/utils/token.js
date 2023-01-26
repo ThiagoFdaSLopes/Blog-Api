@@ -7,6 +7,16 @@ const generateToken = (payload) =>
     algorithm: 'HS256',
   });
 
+const validateToken = (token) => {
+    try {
+      const validToken = jwt.verify(token, TOKEN_SECRET);
+      return { type: '', message: validToken };
+    } catch (err) {
+      return { type: 'TOKEN_INVALID', message: 'Expired or invalid token' };
+    }
+};
+  
 module.exports = {
   generateToken,
+  validateToken,
 };
