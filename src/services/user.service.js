@@ -16,7 +16,18 @@ const findAllUsers = async () => {
   return users;
 };
 
+const findUserById = async (id) => {
+  try {
+    const { dataValues } = await 
+    User.findOne({ where: { id }, attributes: { exclude: ['password'] } });
+    return { type: '', message: dataValues };
+  } catch (err) {
+    return { type: 'USER_NOT_EXIST', message: 'User does not exist' };
+  }
+};
+
 module.exports = {
   createNewUser,
   findAllUsers,
+  findUserById,
 };
