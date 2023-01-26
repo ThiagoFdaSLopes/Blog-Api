@@ -1,6 +1,6 @@
 const routeLogin = require('./userLogin');
 const routeUser = require('./user');
-const routeCategory = require('./Category');
+const routeCategory = require('./category');
  
 module.exports = {
   routeLogin,
