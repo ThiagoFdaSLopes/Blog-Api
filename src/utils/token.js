@@ -15,8 +15,11 @@ const validateToken = (token) => {
       return { type: 'TOKEN_INVALID', message: 'Expired or invalid token' };
     }
 };
+
+const verifyToken = (token) => jwt.verify(token, TOKEN_SECRET);
   
 module.exports = {
   generateToken,
   validateToken,
+  verifyToken,
 };
