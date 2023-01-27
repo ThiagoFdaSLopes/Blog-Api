@@ -1,5 +1,5 @@
 const Sequelize = require('sequelize');
-const { BlogPost, PostCategory } = require('../models');
+const { BlogPost, PostCategory, Category, User } = require('../models');
 
 const config = require('../config/config');
 
@@ -7,8 +7,22 @@ const env = process.env.NODE_ENV || 'development';
 // Ajustamos para usar a configuração correta para nosso ambiente
 const sequelize = new Sequelize(config[env]);
 
-const findPostByid = (id) => {
-  const post = BlogPost.findOne({ where: { id } });
+const findPostByid = async (id) => {
+  const post = await BlogPost.findOne({ where: { id },
+    include: [
+      { model: Category, as: 'categories' }, 
+      { model: User, as: 'user', attributes: { exclude: ['password'] } }] });
+
+  if (!post) return { type: 'POST_NOT_EXISTS', message: 'Post does not exist' };
+
+  return { type: '', message: post };
+};
+
+const getAllPosts = async () => {
+  const post = await BlogPost.findAll({
+    include: [
+      { model: Category, as: 'categories' }, 
+      { model: User, as: 'user', attributes: { exclude: ['password'] } }] });
 
   return post;
 };
@@ -35,4 +49,6 @@ const createPost = async (id, { title, content, categoryIds }) => {
 
 module.exports = {
   createPost,
+  findPostByid,
+  getAllPosts,
 };
