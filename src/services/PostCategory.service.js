@@ -40,8 +40,8 @@ const createPost = async (id, { title, content, categoryIds }) => {
       return post;
     });
 
-    const postComplet = await findPostByid(result.id);
-    return { type: '', message: postComplet };
+    const { message } = await findPostByid(result.id);
+    return { type: '', message };
   } catch (err) {
     return { type: 'INVALID_CATEGORY', message: 'one or more "categoryIds" not found' };
   }
