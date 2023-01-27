@@ -47,8 +47,23 @@ const createPost = async (id, { title, content, categoryIds }) => {
   }
 };
 
+const updatePost = async (userId, postId, body) => {
+  const { type, message } = await findPostByid(postId);
+  if (type) return { type, message };
+
+  if (message.userId !== userId) { 
+    return { type: 'USER_NOT_PERMISSION', message: 'Unauthorized user' }; 
+  }
+
+  await BlogPost.update(body, { where: { id: postId } });
+
+  const result = await findPostByid(postId);
+  return { type: '', message: result.message };
+};
+
 module.exports = {
   createPost,
   findPostByid,
   getAllPosts,
+  updatePost,
 };
