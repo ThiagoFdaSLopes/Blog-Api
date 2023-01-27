@@ -61,9 +61,21 @@ const updatePost = async (userId, postId, body) => {
   return { type: '', message: result.message };
 };
 
+const deletePostId = async (userId, postId) => {
+  const { type, message } = await findPostByid(postId);
+  if (type) return { type, message };
+
+  if (message.userId !== userId) { 
+    return { type: 'USER_NOT_PERMISSION', message: 'Unauthorized user' }; 
+  }
+
+  await BlogPost.destroy({ where: { id: postId } });
+};
+
 module.exports = {
   createPost,
   findPostByid,
   getAllPosts,
   updatePost,
+  deletePostId,
 };

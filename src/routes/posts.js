@@ -10,5 +10,6 @@ router.post('/', validateToken, validateBodyCreatePost, postCategoryController.c
 router.put('/:id', validateToken, validateBodyUpdate, postCategoryController.updatePost);
 router.get('/', validateToken, postCategoryController.findAllPosts);
 router.get('/:id', validateToken, postCategoryController.findPostByid);
+router.delete('/:id', validateToken, postCategoryController.deletePostId);
 
 module.exports = router;
