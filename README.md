@@ -1,13 +1,13 @@
-# :construction: README customizado em construção ! :construction:
-<!-- Olá, Tryber!
-Esse é apenas um arquivo inicial para o README do seu projeto no qual você pode customizar e reutilizar todas as vezes que for executar o trybe-publisher.
+# Blog Api
+Neste projeto foi desenvolvido uma API e um banco de dados para a produção de conteúdo para um blog!
 
-Para deixá-lo com a sua cara, basta alterar o seguinte arquivo da sua máquina: ~/.student-repo-publisher/custom/_NEW_README.md
+Foi desenvolvido uma aplicação em Node.js usando o pacote sequelize para fazer um CRUD de posts.
 
-É essencial que você preencha esse documento por conta própria, ok?
-Não deixe de usar nossas dicas de escrita de README de projetos, e deixe sua criatividade brilhar!
-:warning: IMPORTANTE: você precisa deixar nítido:
-- quais arquivos/pastas foram desenvolvidos por você; 
-- quais arquivos/pastas foram desenvolvidos por outra pessoa estudante;
-- quais arquivos/pastas foram desenvolvidos pela Trybe.
--->
+Foi criado endpoints que estarão conectados ao seu banco de dados seguindo os princípios do REST;
+
+Para fazer um post é necessário usuário e login, portanto será trabalhada a relação entre user e post;
+
+Será necessária a utilização de categorias para os posts, trabalhando, assim, a relação de posts para categories e de categories para posts.
+
+## Stack utilizada
+Back-end: Javascript, Node, Express,Sequelize, JWT, MySQL2, Docker
